@@ -1,0 +1,124 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+body{
+    height: 100vh;
+    background: linear-gradient(to bottom, #2887e3 50%, #16191e 50%);
+}
+
+.hide{
+    display: none;
+}
+.music{
+    width: 80vw ;
+    font-size: 16px;
+    max-width: 25em;
+    background-color: white;
+    padding: 3em 1.8em;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    border-radius: 0.5em;
+    box-shadow: 0.6em 1.2em 3em rgba(0, 0, 0, 0.25);
+}
+#audio {
+    display: none;
+}
+.song-img{
+    width: 100%;
+    margin-top: 1.25em;
+}
+
+.playlist{
+    float: right;
+}
+
+.song-details{
+    text-align: center;
+    font-family: "Poppins" , sans-serif;
+}
+
+.song-details>.song-name{
+    font-weight: 600;
+    font-size: 1.3em;
+    letter-spacing: 0.3px;
+    padding-top: 10px;
+
+}
+
+.song-details>.song-artist{
+    font-size: 0.8em;
+    padding-top: 10px;
+}
+
+.player-options{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 1.25em;
+    margin: 1.25em 0 0.6em 0;
+}
+
+.music>button{
+    border: none;
+    background-color: transparent;
+}
+
+.music>.player-options>button{
+    border: none;
+}
+
+.play,.pause{
+    height: 2.5em;
+    width: 2.5em;
+    font-size: 1.8em;
+    background-color: #2887e3;
+    color: white;
+    border-radius: 50%;
+}
+
+.prev,.next{
+    font-size: 1.4em;
+    color: #16191e;
+}
+
+.shuffle, .repeat{
+    font-size: 1em;
+    color: #949494;
+}
+
+.progress-bar{
+    position: relative;
+    width: 100%;
+    height: 0.3em;
+    background-color: rgba(128, 128, 128, 0.349);
+    margin: 1em 0;
+    border-radius: 0.18em;
+    cursor: pointer;
+}
+
+.progress-bar>.current-progress{
+    position: absolute;
+    left: 0;
+    top: 0;
+    display: inline-block;
+    height: 100%;
+    width: 20%;
+    background-color: #2887e3;
+    border-radius: 0.18em;
+}
+
+.time{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-family: "Roboto Mono", monospace;
+}
+
+.playlist-container>button{
+    border: none;
+    background-color: transparent;
+}

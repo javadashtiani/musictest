@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Custom Music Player</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+      integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+
+    <link rel="stylesheet" href="master.css" />
+  </head>
+
+  <body>
+    <!-- Add file music -->
+    <audio id="audio" controls>
+      <source src="audio/tm-bax.mp3" />
+    </audio>
+    <!-- ------- -->
+    <div class="music">
+      <button class="playlist">
+        <i class="fa-solid fa-angle-down"></i>
+      </button>
+
+      <img class="song-img" src="assest/img/1.jpg" alt="" />
+
+      <div class="song-details">
+        <p class="song-name" style="text-transform: capitalize">make me move</p>
+        <p class="song-artist" style="text-transform: capitalize">
+          culture code
+        </p>
+      </div>
+
+      <div class="player-options">
+        <button class="shuffle">
+          <i class="fa-solid fa-shuffle"></i>
+        </button>
+
+        <button class="prev">
+          <i class="fa-solid fa-backward-step"></i>
+        </button>
+
+        <button onclick="play(this)" class="play">
+          <i class="fa-solid fa-play"></i>
+        </button>
+
+        <button class="pause hide">
+          <i class="fa-solid fa-pause"></i>
+        </button>
+
+        <button class="next">
+          <i class="fa-solid fa-forward-step"></i>
+        </button>
+
+        <button class="repeat">
+          <i class="fa-solid fa-repeat"></i>
+        </button>
+      </div>
+
+      <audio preload="metadata" class="audio"></audio>
+
+      <div class="progress-bar">
+        <div class="current-progress"></div>
+      </div>
+
+      <div class="time">
+        <span id="current-time">0:00</span>
+        <span id="max-duration">0:00</span>
+      </div>
+
+      <div class="playlist-container hide">
+        <button class="close">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+
+        <ul class="playlist-songs"></ul>
+      </div>
+    </div>
+    <div>
+      <audio>
+        <source src="audio/tm-bax.mp3" />
+      </audio>
+    </div>
+  </body>
+  <script>
+    // Add all file music ***************
+    const allAudio = [
+      "audio/tm-bax.mp3",
+      "audio/shadmehr.ogg",
+      "audio/saman.mp3",
+      "audio/mohsen.mp3",
+      "audio/farzad.mp3",
+    ];
+
+    // index for songs **********************
+    // Song name & Song Artist ******************
+    const songName = document.querySelector(".song-name");
+    const songArtist = document.querySelector(".song-artist");
+    // **************
+    let index = 0;
+    const audio = document.querySelector("#audio");
+    const prevButton = document.getElementsByClassName("prev")[0];
+    //اینجا چون آرایه برمیگردونه باید بگی اندیس 0 رو میخوام ******************
+    const nextButton = document.getElementsByClassName("next")[0];
+    //اینجا چون آرایه برمیگردونه باید بگی اندیس 0 رو میخوام ****************
+    const repeatButton = document.getElementsByClassName("repeat")[0];
+    //اینجا چون آرایه برمیگردونه باید بگی اندیس 0 رو میخوام ****************
+    const shuffleButton = document.getElementsByClassName("shuffle")[0];
+    //اینجا چون آرایه برمیگردونه باید بگی اندیس 0 رو میخوام ****************
+    // const audio = document.getElementsByClassName("audio");
+    // console.log(audio);
+    const playButton = document.getElementsByClassName("play")[0];
+
+    // const maxDuration = document.getElementById("max-duration");
+    // console.log(maxDuration);
+
+    // const currentTime = document.getElementById("current-time");
+    // console.log(currentTime);
+
+    // const progressBar = document.getElementsByClassName("progress-bar");
+    // console.log(progressBar);
+
+    // const playlistcontainer =
+    //   document.getElementsByClassName("playlist-container");
+    // console.log(playlistcontainer);
+
+    // const closeButton = document.getElementsByClassName("close");
+    // console.log(closeButton);
+
+    // const playlistSongs = document.getElementsByClassName("playlist-songs");
+    // console.log(playlistSongs);
+
+    // const currentProgress = document.getElementsByClassName("current-progress");
+    // console.log(currentProgress);
+
+    //set function play ************************
+    let i = 1;
+    function play(btn) {
+      // console.log(playIcon); return icon play*************
+      const playIcon = btn.children[0];
+      if (i % 2) {
+        audio.play();
+        playIcon.classList.remove("fa-play");
+        playIcon.classList.add("fa-pause");
+      } else {
+        audio.pause();
+        playIcon.classList.remove("fa-pause");
+        playIcon.classList.add("fa-play");
+      }
+      i++;
+    }
+    // اضافه کرن اطلاعات آهنگ و خواننده**************************
+    function details() {
+      if (index == 0) {
+        songName.innerHTML = "Dokhtare bandar";
+        songArtist.innerHTML = "tm -bax";
+      } else if (index == 1) {
+        console.log('test');
+        songName.innerHTML = " bi ehsas";
+        console.log(songName);
+        songArtist.innerHTML = "Shadmehr";
+      } else if (index == 2) {
+        songName.innerHTML = "Jonon";
+        songArtist.innerHTML = "Saman Jalili";
+      } else if (index == 3) {
+        songName.innerHTML = "Dele tanha";
+        songArtist.innerHTML = "Mohsen Yegane";
+      } else {
+        songName.innerHTML = "Javaher";
+        songArtist.innerHTML = "Farzad Farzin";
+      }
+    }
+    details();
+
+    // set next btn ****************************
+    nextButton.addEventListener("click", nextMusic);
+    function nextMusic() {
+      index++;
+      if (index > allAudio.length - 1) {
+        index = 0;
+      }
+      audio.setAttribute("src", allAudio[index]);
+      audio.play();
+      // اینجا اومدم اون فانکشنی که اسم آهنگ و خواننده رو توش اضافه کردم فراخوانی کردم**********************
+      details();
+    }
+    // set prev btn*****************
+    prevButton.addEventListener("click", prevMusic);
+    function prevMusic() {
+      index--;
+      if (index < 0) {
+        index = 4;
+      }
+      audio.setAttribute("src", allAudio[index]);
+      audio.play();
+      // اینجا اومدم اون فانکشنی که اسم آهنگ و خواننده رو توش اضافه کردم فراخوانی کردم**********************
+      details();
+    }
+    // initially loop=true
+
+    let loop = true;
+
+    // events object
+
+    // let events = {
+    //   mouse: {
+    //     click: "click",
+    //   },
+    //   touch: {
+    //     click: "touchstart",
+    //   },
+    // };
+
+    // let deviceType = "";
+
+    // detect touch device
+
+    // const isTouchDevice = () => {
+    //   try {
+    //     document.createEvent("TouchEvent");
+    //     deviceType = "touch";
+    //     return true;
+    //   } catch (e) {
+    //     deviceType = "mouse";
+    //     return false;
+    //   }
+    // };
+
+    // format time
+
+    // const timeFormatter = (timeInput) => {
+    //   let minute = Math.floor(timeInput / 60);
+    //   minute = minute < 10 ? "0" + minute : minute;
+
+    //   let second = Math.floor(timeInput % 60);
+    //   second = second < 10 ? "0" + second : second;
+    //   return `${minute}:${second}`;
+    // };
+
+    // console.log(timeFormatter(400));
+
+    // set songs
+
+    // const setSong = (arrayIndex) => {
+    //   let { name, link, artist, image } = songList[arrayIndex];
+
+    //   audio.src = link;
+    //   songName.innerHtml = name;
+    //   songArtist.innerHtml = artist;
+    //   songImg.src = image;
+
+    //   audio.onloadedmetadata = () => {
+    //     maxDuration.innerText = timeFormatter(audio.duration);
+    //   };
+    // };
+
+    // play songs
+
+    // const playAudio = () => {
+    //   audio.play();
+    //   pauseButton.classList.remove("hide");
+    //   playButton.classList.add("hide");
+    // };
+
+    // repeat button
+
+    // function repeat() {
+    //      if (repeatButton.classList.contains("active")) {
+    //         repeatButton.classList.remove("active")
+    //         audio.loop = false
+    //         console.log("repeat off");
+    //     } else {
+    //         repeatButton.classList.add("active")
+    //         audio.loop = true
+    //         console.log("repeat on");
+    //     }
+    // }
+
+    // repeatButton.addEventListener("click" , () => {
+    //     if (repeatButton.classList.contains("active")) {
+    //         repeatButton.classList.remove("active")
+    //         audio.loop = false
+    //         console.log("repeat off");
+    //     } else {
+    //         repeatButton.classList.add("active")
+    //         audio.loop = true
+    //         console.log("repeat on");
+    //     }
+    // })
+
+    // play button
+
+    // playButton.addEventListener("click" , playAudio)
+  </script>
+  <script src="assest/js/main.js"></script>
+</html>
